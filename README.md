@@ -6,8 +6,8 @@
 
 First install environments for LLaVA model
 ```
-conda create -n llava_test python=3.10 -y 
-conda activate llava_test
+conda create -n llava python=3.10 -y 
+conda activate llava
 pip install -r requirements.txt
 
 
@@ -47,7 +47,7 @@ python accuracy.py
 For TMI, TMI_C, and SMI, we provide 3 losses: `CE`, `LOM`, and `MML`.
 For SMI_AW, we provide 3 losses: `CE`, ```LOM`, and `MML_batch`.
 
-## Search for initial w (optinal)
+## Search for initial w (optional)
 
 
 ```
