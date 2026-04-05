@@ -20,7 +20,7 @@ num_train_epochs=1
 
 
 
-#############3 liuhaotian/llava-v1.5-13b
+#############3 liuhaotian/llava-v1.6-7b
 data_path=facescrub_train.json
 data_root=/home/users/ngocntb/facescrub/
 model=liuhaotian/llava-v1.6-vicuna-7b
@@ -72,50 +72,6 @@ deepspeed --include localhost:$GPU_ID --master_port $master_port LLaVA/llava/tra
 #     --answers-file "./results/llava-v1.6-vicuna-13b_facescrub_90_test_results_no_duplicated_name.json"
 
 
-######################################
-#  CUDA_VISIBLE_DEVICES=1,2,3,4 python LLaVA/llava/eval/model_vqa_science.py \
-#     --model-path "./checkpoints/train_90/liuhaotian/llava-v1.5-7b/" \
-#     --model_name "llava_v1.5_lora" \
-#     --model-base "liuhaotian/llava-v1.5-7b" \
-#     --image-folder "/local_data/ngocntb/facescrub/" \
-#     --question-file "facescrub_test.json" \
-#     --answers-file "./results/llava-v1.5-7b_facescrub_90_test_results.json"
-
-# data_path=facescrub_train.json
-# data_root=/local_data/ngocntb/facescrub/
-# model=liuhaotian/llava-v1.6-vicuna-7b
-# output_dir=$SAVE_ROOT/checkpoints/train_90/$model/
-# deepspeed="LLaVA/scripts/zero3.json"
-
-# deepspeed --include localhost:$GPU_ID --master_port $master_port LLaVA/llava/train/train_mem.py \
-#     --lora_enable True --lora_r 128 --lora_alpha 256 --mm_projector_lr 2e-5 \
-#     --deepspeed $deepspeed \
-#     --model_name_or_path $model \
-#     --version v1 \
-#     --data_path $data_path \
-#     --image_folder $data_root \
-#     --vision_tower openai/clip-vit-large-patch14-336 \
-#     --mm_projector_type mlp2x_gelu \
-#     --mm_vision_select_layer -2 \
-#     --mm_use_im_start_end False \
-#     --mm_use_im_patch_token False \
-#     --image_aspect_ratio pad \
-#     --group_by_modality_length True \
-#     --bf16 True \
-#     --output_dir $output_dir \
-#     --num_train_epochs $num_train_epochs \
-#     --per_device_train_batch_size $per_device_train_batch_size \
-#     --per_device_eval_batch_size 4 \
-#     --gradient_accumulation_steps $gradient_accumulation_steps \
-#     --evaluation_strategy "no" \
-#     --save_strategy "steps" \
-#     --save_steps 50000 \
-#     --save_total_limit 1 \
-#     --learning_rate 2e-4 \
-#     --weight_decay 0. \
-#     --warmup_ratio 0.03 \
-#     --lr_scheduler_type "cosine" \
-#     --logging_steps 1 \
 #     --tf32 True \
 #     --model_max_length 2048 \
 #     --gradient_checkpointing True \
